@@ -4,6 +4,7 @@
     --bg-heading: #EAEAEA;
     --grey: #B1B1B1;
     --lightblue: #8EDAFC;
+    --message-bar-color: #F3EEEA;
 }
 
 
@@ -21,11 +22,17 @@ img {
 }
 
 
-
-
 body {
     height: 100vh;
     background: linear-gradient(180deg, var(--bg-secondary) 15%, var(--bg-primary) 15%);
+}
+
+input[type='text']:focus {
+    outline: none;
+}
+
+i:hover {
+    cursor: pointer;
 }
 
 .container {
@@ -140,11 +147,11 @@ body {
 }
 .searchbar i {
     display: flex;
-    font-size: 1rem;
+    justify-content: center;
     align-items: center;
+    font-size: 1rem;
     background-color: white;
-    padding: 0.5rem;
-    padding-left: 1rem;
+    padding: 0.5rem 1rem;
     color: var(--grey)
 }
 
@@ -156,13 +163,10 @@ body {
 
 .searchbar input {
     padding: 0.5rem;
-    width: 100%;
+    flex-grow: 1;
     border-left: none;
     
 }
-.searchbar input:focus {
-    outline: none;
- }
 
  .chats, .contact {
     background-color: white;
@@ -177,12 +181,39 @@ body {
 .contact {
     display: flex;
     padding: 1rem;
-    border-top: 1px solid var(--grey);
+    border-top: 1px solid whitesmoke;
 }
 
 .contact:hover {
     cursor: default;
     filter: brightness(95%);
+}
+
+.chat-body {
+    flex-grow: 1;
+    background-image: url(../img/mine.jpg);
+    overflow-y: scroll;
+}
+
+.message-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--message-bar-color);
+    padding: 0.5rem 0;
+    justify-content: space-between;
+}
+
+.message-bar i {
+    font-size: 1.2rem;
+    margin: 0 1.5rem;
+    color: var(--grey);
+}
+
+.message-bar input {
+    flex-grow: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
 }
 
 
