@@ -1,5 +1,80 @@
+:root {
+    --bg-header: #009688;
+    --bg-main: #DBDBD3;
+    --bg-heading: #EAEAEA;
+}
+
+
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    height: 100vh;
+}
+
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.row {
+    display: flex;
+    height: 700px;
+}
+
+/* #region columns */
+.col-4 {
+    width: calc((100%/12)*4);
+}
+.col-8 {
+    width: calc((100%/12)*8);
+}
+
+[class*='col-'] {
+    height: 100%;
+}
+/* #endregion */
+
+/* #region header */
+header {
+    height: 15%;
+    background-color: var(--bg-header);
+}
+
+/* #endregion */
+
+
+/* #region main */
+main {
+    background-color: var(--bg-main);
+    height: 85%;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+.heading {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-heading);
+}
+
+
+
+/* #endregion */
