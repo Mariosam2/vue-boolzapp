@@ -245,6 +245,16 @@ i:hover {
     color: var(--grey);
 }
 
+.message-bar i.chat-input {
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-secondary);
+    border-radius: 50%;
+}
 
 
 .message-bar input {
@@ -253,6 +263,8 @@ i:hover {
     border: none;
     border-radius: 0.5rem;
 }
+
+
 
 
 
