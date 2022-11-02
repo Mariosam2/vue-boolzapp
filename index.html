@@ -69,8 +69,9 @@
                         </div>
                         <div class="message-bar">
                             <i class="fa-regular fa-face-smile"></i>
-                            <input type="text" name="newMessage" id="newMessage" placeholder="Scrivi un messaggio">
-                            <i class="fa-solid fa-microphone"></i>
+                            <input type="text" name="newMessage" id="newMessage" placeholder="Scrivi un messaggio" v-model="newMessage">
+                            <i v-show="newMessage.length > 0" class="fa-solid fa-paper-plane empty"></i>
+                            <i v-show="newMessage.length === 0" class="fa-solid fa-microphone"></i>
                         </div>
                     </div>
                 </div>
