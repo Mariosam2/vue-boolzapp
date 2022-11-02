@@ -43,7 +43,7 @@
                             <input type="text" name="searchBar" id="searchBar" placeholder="Cerca o inzia una nuova chat">
                         </div>
                         <div class="chats">
-                            <div class="contact"  v-for="(contact, index) in contacts">
+                            <div class="contact" :class="activeContact === index ? 'active' : ''"  v-for="(contact, index) in contacts">
                                 <div class="avatar">
                                     <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
                                     <div class="contact-info"><span>{{contact.name}}</span><span class="text-grey small"> <br> Ultimo messaggio inviato</span></div>
@@ -64,10 +64,12 @@
                             <i class="fa-solid fa-paperclip"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
-                        <div class="chat-body"></div>
+                        <div class="chat-body">
+                            <div class="message" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="message in contacts[0].messages">{{message.message}}<span class="text-grey xs">{{message.date.split(' ')[1].slice(0,5)}}</span> </div>
+                        </div>
                         <div class="message-bar">
                             <i class="fa-regular fa-face-smile"></i>
-                            <input type="text" name="message" id="message" placeholder="Scrivi un messaggio">
+                            <input type="text" name="newMessage" id="newMessage" placeholder="Scrivi un messaggio">
                             <i class="fa-solid fa-microphone"></i>
                         </div>
                     </div>

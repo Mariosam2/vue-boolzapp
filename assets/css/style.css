@@ -5,6 +5,7 @@
     --grey: #B1B1B1;
     --lightblue: #8EDAFC;
     --message-bar-color: #F3EEEA;
+    --msg-sent: #D5F9BA;
 }
 
 
@@ -44,7 +45,7 @@ i:hover {
 
 .row {
     display: flex;
-    height: 800px;
+    height: 80vh;
 }
 
 /* #region Utilities */
@@ -54,6 +55,10 @@ i:hover {
 
 .small {
     font-size: 0.8rem;
+}
+
+.xs {
+    font-size: 0.6rem;
 }
 
 /* #endregion */
@@ -184,6 +189,11 @@ i:hover {
     border-top: 1px solid whitesmoke;
 }
 
+.contact.active , .contact.active:hover {
+    filter: brightness(90%);
+}
+
+
 .contact:hover {
     cursor: default;
     filter: brightness(95%);
@@ -191,8 +201,35 @@ i:hover {
 
 .chat-body {
     flex-grow: 1;
+    padding: 3rem 5rem;
     background-image: url(../img/mine.jpg);
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    position: relative;
+    width: 45%;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+
+}
+
+.message span {
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.3rem;
+}
+
+.sent {
+    background-color: var(--msg-sent);
+    align-self: flex-end;
+}
+
+.received {
+    background-color: white;
 }
 
 .message-bar {
