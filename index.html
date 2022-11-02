@@ -45,14 +45,18 @@
                         <div class="chats">
                             <div class="contact"  v-for="(contact, index) in contacts">
                                 <div class="avatar">
-                                    <img src="./assets/img/avatar_1.jpg" alt="">
-                                    <div class="contact-info"><span>Michele</span><span class="text-grey small"> <br> Ultimo messaggio inviato</span></div>
+                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
+                                    <div class="contact-info"><span>{{contact.name}}</span><span class="text-grey small"> <br> Ultimo messaggio inviato</span></div>
                                 </div>
                                 <span class="text-grey small">12:00</span>
                             </div>
+                           
+                            
                         </div>
                     </div>
-                    <div class="col-8 chat"></div>
+                    <div class="col-8 chat">
+                        <div class="heading"></div>
+                    </div>
                 </div>
             </div>
         </main>

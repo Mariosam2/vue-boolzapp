@@ -32,12 +32,12 @@ body {
     max-width: 1320px;
     margin: 0 auto;
     padding: 2rem;
-    /* padding-top: 5%; */
+    
 }
 
 .row {
     display: flex;
-    height: 700px;
+    height: 800px;
 }
 
 /* #region Utilities */
@@ -60,6 +60,8 @@ body {
 
 [class*='col-'] {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 /* #endregion */
 
@@ -68,8 +70,6 @@ body {
 .sidebar > :not(.notifications) {
     border-right: 1px solid var(--grey);
 }
-
-
 
 .avatar {
     margin-right: auto;
@@ -89,7 +89,7 @@ body {
 }
 
 .heading {
-    padding: 0.5rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     background-color: var(--bg-heading);
@@ -107,7 +107,7 @@ body {
 }
 
 .notifications {
-    padding: 0.75rem;
+    padding: 1rem;
     background-color: var(--lightblue);
     display: flex;
     align-items: center;
@@ -147,29 +147,42 @@ body {
     padding-left: 1rem;
     color: var(--grey)
 }
-.searchbar input {
-    padding: 0.5rem;
-}
+
 
 .searchbar i, .searchbar input {
-    border: none;
     height: 30px;
+    border: 1px solid var(--bg-heading);
 }
-
 
 .searchbar input {
+    padding: 0.5rem;
     width: 100%;
+    border-left: none;
+    
 }
+.searchbar input:focus {
+    outline: none;
+ }
+
+ .chats, .contact {
+    background-color: white;
+ }
 
 .chats {
-    height: 100%;
-    background-color: white;
+    overflow-y: scroll;
+    padding-bottom: 3rem;
+    
 }
 
 .contact {
     display: flex;
     padding: 1rem;
     border-top: 1px solid var(--grey);
+}
+
+.contact:hover {
+    cursor: default;
+    filter: brightness(95%);
 }
 
 
