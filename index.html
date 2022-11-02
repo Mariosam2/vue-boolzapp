@@ -43,9 +43,9 @@
                             <input type="text" name="searchBar" id="searchBar" placeholder="Cerca o inzia una nuova chat">
                         </div>
                         <div class="chats">
-                            <div class="contact" :class="activeContact === index ? 'active' : ''"  v-for="(contact, index) in contacts">
+                            <div class="contact" :class="activeContact === index ? 'active' : ''"  v-for="(contact, index) in contacts" @click="setActiveContact(index)">
                                 <div class="avatar">
-                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
+                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" :alt="contacts[activeContact].name">
                                     <div class="contact-info"><span>{{contact.name}}</span><span class="text-grey small"> <br> Ultimo messaggio inviato</span></div>
                                 </div>
                                 <span class="text-grey small">12:00</span>
@@ -57,15 +57,15 @@
                     <div class="col-8 chat">
                         <div class="heading">
                             <div class="avatar">
-                                <img src="./assets/img/avatar_1.jpg" alt="">
-                                <div class="contact-info"><span>Michele</span><span class="text-grey small"> <br> Ultimo accesso oggi alle 12:00</span></div>
+                                <img :src="'./assets/img/avatar' + contacts[activeContact].avatar + '.jpg'" :alt="contacts[activeContact].name">
+                                <div class="contact-info"><span>{{contacts[activeContact].name}}</span><span class="text-grey small"> <br> Ultimo accesso oggi alle 12:00</span></div>
                             </div>
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <i class="fa-solid fa-paperclip"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                         <div class="chat-body">
-                            <div class="message" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="message in contacts[0].messages">{{message.message}}<span class="text-grey xs">{{message.date.split(' ')[1].slice(0,5)}}</span> </div>
+                            <div class="message" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="message in contacts[activeContact].messages">{{message.message}}<span class="text-grey xs">{{message.date.split(' ')[1].slice(0,5)}}</span> </div>
                         </div>
                         <div class="message-bar">
                             <i class="fa-regular fa-face-smile"></i>

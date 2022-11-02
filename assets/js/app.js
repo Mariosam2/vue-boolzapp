@@ -7,5 +7,10 @@ createApp({
             contacts: data,
             activeContact: 0,
         }
+    },
+    methods: {
+        setActiveContact(index){
+            this.activeContact = index;
+        }
     }
 }).mount('#app')
