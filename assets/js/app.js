@@ -6,6 +6,8 @@ createApp({
         return {
             contacts: data,
             activeContact: 0,
+            // newMessage dovrà essere un'oggetto messagge, per il momento lo lascio così
+            newMessage: '',
         }
     },
     methods: {

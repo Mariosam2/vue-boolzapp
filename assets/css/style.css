@@ -114,7 +114,7 @@ i:hover {
     
 }
 
-.heading i, .notifications i {
+.heading i, .notifications i, .message-bar i {
     font-size: 1.2rem;
 }
 
@@ -241,10 +241,11 @@ i:hover {
 }
 
 .message-bar i {
-    font-size: 1.2rem;
     margin: 0 1.5rem;
     color: var(--grey);
 }
+
+
 
 .message-bar input {
     flex-grow: 1;
