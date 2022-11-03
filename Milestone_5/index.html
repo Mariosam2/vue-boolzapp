@@ -74,11 +74,11 @@
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                         <div class="chat-body">
-                            <div v-if="this.contacts[activeContact].messages.length > 0" class="message" @click.stop="onClick(i)"
+                            <div v-if="this.contacts[activeContact].messages.length > 0" class="message" @click="onClick(i)"
                                 :class="message.status === 'sent' ? 'sent' : 'received', {clicked: false}"
                                 v-for="(message, i) in contacts[activeContact].messages">{{message.message}}<span
                                     class="text-grey xs">{{message.date.split(' ')[1].slice(0,5)}}</span>
-                                <div class="dropdown" :class="message.clicked ? 'show' : ''" @click.stop="removeMessage(i)">delete message</div>
+                                <div class="dropdown" :class="message.clicked ? 'show' : ''" v-if="message.clicked" @click.stop="removeMessage(i)">Delete message</div>
                             </div>
                             <div v-else>Nessun messaggio</div>
                         </div>

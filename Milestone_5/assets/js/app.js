@@ -1,5 +1,6 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 import data from './config.js';
+import {luxon} from 'https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js';
 //console.log(data);
 createApp({
     data() {
@@ -58,6 +59,7 @@ createApp({
             console.log(message);
         },
         removeMessage(index){
+            /* this.contacts[this.activeContact].messages.message[index].clicked = false; */
             this.contacts[this.activeContact].messages.splice(index, 1);
             console.log(this.contacts[this.activeContact].messages);
         }
