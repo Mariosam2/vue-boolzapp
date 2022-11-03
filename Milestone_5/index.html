@@ -45,16 +45,18 @@
                         </div>
                         <div class="chats">
                             <div class="contact" v-show="contact.visible"
-                                :class="activeContact === index ? 'active' : ''" v-for="(contact, index) in contacts"
-                                @click="setActiveContact(index)">
+                                :class="activeContact === index ? 'active' : '', {empty: false}"
+                                v-for="(contact, index) in contacts" @click="setActiveContact(index)">
                                 <div class="avatar">
                                     <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'"
                                         :alt="contacts[activeContact].name">
-                                    <div class="contact-info"><span>{{contact.name}}</span><span
-                                            class="text-grey small"> <br> {{contact.messages[contact.messages.length -
-                                            1].message}}</span></div>
+                                    <div class="contact-info"><span>{{contact.name}}</span>
+                                        <span class="text-grey small" v-if="!contact.empty"> <br>{{contact.messages[contact.messages.length -1].message}}</span>
+                                        <span class="text-grey small" v-else><br>{{emptyMsg}}</span>
+                                    </div>
                                 </div>
-                                <span class="text-grey small">{{contact.messages[contact.messages.length -
+                                <span class="text-grey small"
+                                    v-if="!contact.empty">{{contact.messages[contact.messages.length -
                                     1].date.split(' ')[1].slice(0,5)}}</span>
                             </div>
 
@@ -74,13 +76,15 @@
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                         <div class="chat-body">
-                            <div v-if="this.contacts[activeContact].messages.length > 0" class="message" @click="onClick(i)"
+                            <div class="message" @click="onClick(i)"
                                 :class="message.status === 'sent' ? 'sent' : 'received', {clicked: false}"
                                 v-for="(message, i) in contacts[activeContact].messages">{{message.message}}<span
                                     class="text-grey xs">{{message.date.split(' ')[1].slice(0,5)}}</span>
-                                <div class="dropdown" :class="message.clicked ? 'show' : ''" v-if="message.clicked" @click.stop="removeMessage(i)">Delete message</div>
+                                <div class="dropdown" :class="message.clicked ? 'show' : ''" v-if="message.clicked"
+                                    @click.stop="removeMessage(i)">Delete message</div>
                             </div>
-                            <div v-else>Nessun messaggio</div>
+                            <div class="message empty" v-show="contacts[activeContact].empty">{{emptyMsg}}</div>
+
                         </div>
                         <div class="message-bar">
                             <i class="fa-regular fa-face-smile"></i>

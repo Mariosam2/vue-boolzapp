@@ -1,6 +1,5 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 import data from './config.js';
-import {luxon} from 'https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js';
 //console.log(data);
 createApp({
     data() {
@@ -9,6 +8,7 @@ createApp({
             activeContact: 0,
             newMessageText: '',
             contactName: '',
+            emptyMsg: 'No messages here yet...'
         }
     },
     methods: {
@@ -16,6 +16,7 @@ createApp({
             this.activeContact = index;
         },
         sendMessage() {
+            let contact = this.contacts[this.activeContact];
             setTimeout(this.receiveMessage, 1000);
             if (this.newMessageText.length !== 0) {
                 const newMessage = {
@@ -27,6 +28,7 @@ createApp({
                 //console.log( this.contacts[this.activeContact].messages);
                 this.newMessageText = '';
             }
+            this.isEmpty(contact)
 
         },
         receiveMessage() {
@@ -56,12 +58,24 @@ createApp({
             //console.log(message);
             // change the clicked status on the targeted message
             message.clicked = !message.clicked;
-            console.log(message);
+            //console.log(message);
         },
         removeMessage(index){
             /* this.contacts[this.activeContact].messages.message[index].clicked = false; */
+            let contact = this.contacts[this.activeContact];
             this.contacts[this.activeContact].messages.splice(index, 1);
-            console.log(this.contacts[this.activeContact].messages);
+            this.isEmpty(contact);
+            //console.log(this.contacts[this.activeContact].messages);
+        },
+        isEmpty(contact){
+            let messages = this.contacts[this.activeContact].messages;
+            if(messages.length != 0){
+                contact.empty =  false;
+            } else {
+                contact.empty = true;
+            }
+            
+            console.log(this.empty)
         }
     }
 }).mount('#app')

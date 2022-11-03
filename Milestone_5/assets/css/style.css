@@ -243,6 +243,13 @@ i:hover {
     filter: brightness(95%);
 }
 
+.message.empty {
+    align-self: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
 
 
 .sent {
