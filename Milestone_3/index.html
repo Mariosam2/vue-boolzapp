@@ -69,8 +69,8 @@
                         </div>
                         <div class="message-bar">
                             <i class="fa-regular fa-face-smile"></i>
-                            <input type="text" name="newMessage" id="newMessage" placeholder="Scrivi un messaggio" v-model="newMessage">
-                            <i v-if="newMessage.length > 0" class="fa-solid fa-arrow-up chat-input"></i>
+                            <input @keyup.enter="sendMessage" type="text" name="newMessage" id="newMessage" placeholder="Scrivi un messaggio" v-model="newMessage">
+                            <i v-if="newMessage.length > 0" @click="sendMessage" class="fa-solid fa-arrow-up chat-input"></i>
                             <i v-else class="fa-solid fa-microphone chat-input"></i>
                         </div>
                     </div>
