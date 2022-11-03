@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;800&display=swap" rel="stylesheet">
+    <title>Boolzapp</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/app.js" type="module" defer></script>
+</head>
+
+<body>
+    <div id="app">
+        <main id="site_main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 sidebar">
+                        <div class="heading">
+                            <div class="avatar">
+                                <img src="./assets/img/avatar_io.jpg" alt="user">
+                                <span>Sofia</span>
+                            </div>
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                        <div class="notifications">
+                            <i class="fa-solid fa-bell-slash"></i>
+                            <span>Ricevi notifiche di nuovi messaggi <br> <span class="desktop-nots">Attiva notifiche
+                                    desktop</span></span>
+
+                        </div>
+                        <div class="searchbar">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" name="searchBar" id="searchBar" placeholder="Cerca o inzia una nuova chat">
+                        </div>
+                        <div class="chats">
+                            <div class="contact" :class="activeContact === index ? 'active' : ''"  v-for="(contact, index) in contacts" @click="setActiveContact(index)">
+                                <div class="avatar">
+                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" :alt="contacts[activeContact].name">
+                                    <div class="contact-info"><span>{{contact.name}}</span><span class="text-grey small"> <br> Ultimo messaggio inviato</span></div>
+                                </div>
+                                <span class="text-grey small">12:00</span>
+                            </div>
+                           
+                            
+                        </div>
+                    </div>
+                    <div class="col-8 chat">
+                        <div class="heading">
+                            <div class="avatar">
+                                <img :src="'./assets/img/avatar' + contacts[activeContact].avatar + '.jpg'" :alt="contacts[activeContact].name">
+                                <div class="contact-info"><span>{{contacts[activeContact].name}}</span><span class="text-grey small"> <br> Ultimo accesso oggi alle 12:00</span></div>
+                            </div>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-paperclip"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                        <div class="chat-body">
+                            <div class="message" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="message in contacts[activeContact].messages">{{message.message}}<span class="text-grey xs">{{message.date.split(' ')[1].slice(0,5)}}</span> </div>
+                        </div>
+                        <div class="message-bar">
+                            <i class="fa-regular fa-face-smile"></i>
+                            <input type="text" name="newMessage" id="newMessage" placeholder="Scrivi un messaggio" v-model="newMessage">
+                            <i v-if="newMessage.length > 0" class="fa-solid fa-arrow-up chat-input"></i>
+                            <i v-else class="fa-solid fa-microphone chat-input"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- /#site_main -->
+    </div>
+</body>
+
+</html>
