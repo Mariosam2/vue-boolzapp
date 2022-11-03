@@ -218,10 +218,35 @@ i:hover {
 
 }
 
+.message:hover {
+    cursor: pointer;
+}
+
 .message span {
     position: absolute;
     bottom: 0.3rem;
     right: 0.3rem;
+}
+
+.dropdown {
+    position: absolute;
+    opacity: 0;
+    background-color: white;
+    padding: 1rem;
+    top: 90%;
+    right: 0;
+    z-index: 2;
+    transition: opacity 0.2s ease;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 2px black;
+}
+
+.dropdown.show:hover {
+    filter: brightness(95%);
+}
+
+.dropdown.show {
+    opacity: 1;
 }
 
 .sent {

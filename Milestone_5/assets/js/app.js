@@ -44,6 +44,22 @@ createApp({
                     contact.visible = true;
                 }
             });
+        },
+        onClick(index){
+            // reset the clicked statuses
+            let message = this.contacts[this.activeContact].messages[index];
+            this.contacts[this.activeContact].messages.forEach(msg => {
+                if(msg !== message)
+                msg.clicked = false;
+            });
+            //console.log(message);
+            // change the clicked status on the targeted message
+            message.clicked = !message.clicked;
+            console.log(message);
+        },
+        removeMessage(index){
+            this.contacts[this.activeContact].messages.splice(index, 1);
+            console.log(this.contacts[this.activeContact].messages);
         }
     }
 }).mount('#app')

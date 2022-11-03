@@ -40,37 +40,54 @@
                         </div>
                         <div class="searchbar">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" name="searchBar" id="searchBar" placeholder="Cerca o inzia una nuova chat" v-model="contactName" @input="getContacts">
+                            <input type="text" name="searchBar" id="searchBar"
+                                placeholder="Cerca o inzia una nuova chat" v-model="contactName" @input="getContacts">
                         </div>
                         <div class="chats">
-                            <div class="contact" v-show="contact.visible" :class="activeContact === index ? 'active' : ''"  v-for="(contact, index) in contacts" @click="setActiveContact(index)">
+                            <div class="contact" v-show="contact.visible"
+                                :class="activeContact === index ? 'active' : ''" v-for="(contact, index) in contacts"
+                                @click="setActiveContact(index)">
                                 <div class="avatar">
-                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" :alt="contacts[activeContact].name">
-                                    <div class="contact-info"><span>{{contact.name}}</span><span class="text-grey small"> <br> Ultimo messaggio inviato</span></div>
+                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'"
+                                        :alt="contacts[activeContact].name">
+                                    <div class="contact-info"><span>{{contact.name}}</span><span
+                                            class="text-grey small"> <br> {{contact.messages[contact.messages.length -
+                                            1].message}}</span></div>
                                 </div>
-                                <span class="text-grey small">12:00</span>
+                                <span class="text-grey small">{{contact.messages[contact.messages.length -
+                                    1].date.split(' ')[1].slice(0,5)}}</span>
                             </div>
-                           
-                            
+
+
                         </div>
                     </div>
                     <div class="col-8 chat">
                         <div class="heading">
                             <div class="avatar">
-                                <img :src="'./assets/img/avatar' + contacts[activeContact].avatar + '.jpg'" :alt="contacts[activeContact].name">
-                                <div class="contact-info"><span>{{contacts[activeContact].name}}</span><span class="text-grey small"> <br> Ultimo accesso oggi alle 12:00</span></div>
+                                <img :src="'./assets/img/avatar' + contacts[activeContact].avatar + '.jpg'"
+                                    :alt="contacts[activeContact].name">
+                                <div class="contact-info"><span>{{contacts[activeContact].name}}</span><span
+                                        class="text-grey small"> <br> Ultimo accesso oggi alle 12:00</span></div>
                             </div>
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <i class="fa-solid fa-paperclip"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                         <div class="chat-body">
-                            <div class="message" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="message in contacts[activeContact].messages">{{message.message}}<span class="text-grey xs">{{message.date.split(' ')[1].slice(0,5)}}</span> </div>
+                            <div v-if="this.contacts[activeContact].messages.length > 0" class="message" @click.stop="onClick(i)"
+                                :class="message.status === 'sent' ? 'sent' : 'received', {clicked: false}"
+                                v-for="(message, i) in contacts[activeContact].messages">{{message.message}}<span
+                                    class="text-grey xs">{{message.date.split(' ')[1].slice(0,5)}}</span>
+                                <div class="dropdown" :class="message.clicked ? 'show' : ''" @click.stop="removeMessage(i)">delete message</div>
+                            </div>
+                            <div v-else>Nessun messaggio</div>
                         </div>
                         <div class="message-bar">
                             <i class="fa-regular fa-face-smile"></i>
-                            <input @keyup.enter="sendMessage" type="text" name="newMessage" id="newMessage" placeholder="Scrivi un messaggio" v-model="newMessageText">
-                            <i v-if="newMessageText.length > 0" @click="sendMessage" class="fa-solid fa-arrow-up chat-input"></i>
+                            <input @keyup.enter="sendMessage" type="text" name="newMessage" id="newMessage"
+                                placeholder="Scrivi un messaggio" v-model="newMessageText">
+                            <i v-if="newMessageText.length > 0" @click="sendMessage"
+                                class="fa-solid fa-arrow-up chat-input"></i>
                             <i v-else class="fa-solid fa-microphone chat-input"></i>
                         </div>
                     </div>
