@@ -40,10 +40,10 @@
                         </div>
                         <div class="searchbar">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" name="searchBar" id="searchBar" placeholder="Cerca o inzia una nuova chat" v-model="searchContact">
+                            <input type="text" name="searchBar" id="searchBar" placeholder="Cerca o inzia una nuova chat" v-model="contactName" @input="getValue">
                         </div>
                         <div class="chats">
-                            <div class="contact" :class="activeContact === index ? 'active' : ''"  v-for="(contact, index) in contacts" @click="setActiveContact(index)">
+                            <div class="contact" v-show="contact.visible" :class="activeContact === index ? 'active' : ''"  v-for="(contact, index) in contacts" @click="setActiveContact(index)">
                                 <div class="avatar">
                                     <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" :alt="contacts[activeContact].name">
                                     <div class="contact-info"><span>{{contact.name}}</span><span class="text-grey small"> <br> Ultimo messaggio inviato</span></div>

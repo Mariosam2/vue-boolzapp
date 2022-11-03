@@ -7,16 +7,16 @@ createApp({
             contacts: data,
             activeContact: 0,
             newMessageText: '',
-            searchContact: '',
+            contactName: '',
         }
     },
     methods: {
-        setActiveContact(index){
+        setActiveContact(index) {
             this.activeContact = index;
-        }, 
-        sendMessage(){
+        },
+        sendMessage() {
             setTimeout(this.receiveMessage, 1000);
-            if(this.newMessageText.length !== 0){
+            if (this.newMessageText.length !== 0) {
                 const newMessage = {
                     date: '10/01/2020 15:30:55',
                     message: this.newMessageText,
@@ -26,15 +26,26 @@ createApp({
                 //console.log( this.contacts[this.activeContact].messages);
                 this.newMessageText = '';
             }
-            
+
         },
-        receiveMessage(){
+        receiveMessage() {
             const newMessage = {
                 date: '10/01/2020 15:30:55',
                 message: 'ok',
                 status: 'received'
             }
             this.contacts[this.activeContact].messages.push(newMessage);
+        },
+        getValue(event) {
+            this.contactName = event.target.value;
+            console.log(this.contactName);
+            this.contacts.forEach(contact => {
+                if (!contact.name.toLowerCase().includes(this.contactName.toLowerCase())) {
+                    contact.visible = false;
+                } else {
+                    contact.visible = true;
+                }
+            });
         }
     }
 }).mount('#app')
