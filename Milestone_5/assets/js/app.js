@@ -75,7 +75,7 @@ createApp({
                 contact.empty = true;
             }
             
-            console.log(this.empty)
+            //console.log(contact.empty)
         }
     }
 }).mount('#app')
