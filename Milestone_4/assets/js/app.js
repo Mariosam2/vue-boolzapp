@@ -36,9 +36,7 @@ createApp({
             }
             this.contacts[this.activeContact].messages.push(newMessage);
         },
-        getValue(event) {
-            this.contactName = event.target.value;
-            console.log(this.contactName);
+        getValue() {
             this.contacts.forEach(contact => {
                 if (!contact.name.toLowerCase().includes(this.contactName.toLowerCase())) {
                     contact.visible = false;
