@@ -1,0 +1,279 @@
+:root {
+    --bg-secondary: #009688;
+    --bg-primary: #DBDBD3;
+    --bg-heading: #EAEAEA;
+    --grey: #B1B1B1;
+    --lightblue: #8EDAFC;
+    --message-bar-color: #F3EEEA;
+    --msg-sent: #D5F9BA;
+}
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+body {
+    height: 100vh;
+    background: linear-gradient(180deg, var(--bg-secondary) 15%, var(--bg-primary) 15%);
+}
+
+input[type='text']:focus {
+    outline: none;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 2rem;
+    
+}
+
+.row {
+    display: flex;
+    height: 80vh;
+}
+
+/* #region Utilities */
+.text-grey {
+    color: var(--grey);
+}
+
+.small {
+    font-size: 0.8rem;
+}
+
+.xs {
+    font-size: 0.6rem;
+}
+
+/* #endregion */
+/* #region columns */
+.col-4 {
+    width: calc((100%/12)*4);
+}
+.col-8 {
+    width: calc((100%/12)*8);
+}
+
+[class*='col-'] {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* #endregion */
+
+/* #region main */
+
+.sidebar > :not(.notifications) {
+    border-right: 1px solid var(--grey);
+}
+
+.avatar {
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    
+}
+
+
+
+.avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.75rem;
+}
+
+.heading {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-heading);
+}
+
+.heading i {
+    color: var(--grey);
+    margin: 0 0.5rem;
+    
+    
+}
+
+.heading i, .notifications i, .message-bar i {
+    font-size: 1.2rem;
+}
+
+.notifications {
+    padding: 1rem;
+    background-color: var(--lightblue);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.notifications i {
+    margin-right: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+    color: var(--lightblue);
+}
+
+.desktop-nots {
+    color: gray;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.searchbar {
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+.searchbar i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    color: var(--grey)
+}
+
+
+.searchbar i, .searchbar input {
+    height: 30px;
+    border: 1px solid var(--bg-heading);
+}
+
+.searchbar input {
+    padding: 0.5rem;
+    flex-grow: 1;
+    border-left: none;
+    
+}
+
+ .chats, .contact {
+    background-color: white;
+ }
+
+.chats {
+    overflow-y: scroll;
+    padding-bottom: 3rem;
+    
+}
+
+.contact {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid whitesmoke;
+}
+
+.contact.active , .contact.active:hover {
+    filter: brightness(90%);
+}
+
+
+.contact:hover {
+    cursor: default;
+    filter: brightness(95%);
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 3rem 5rem;
+    background-image: url(../img/mine.jpg);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    position: relative;
+    width: 45%;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+
+}
+
+.message span {
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.3rem;
+}
+
+.sent {
+    background-color: var(--msg-sent);
+    align-self: flex-end;
+}
+
+.received {
+    background-color: white;
+}
+
+.message-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--message-bar-color);
+    padding: 0.5rem 0;
+    justify-content: space-between;
+}
+
+.message-bar i {
+    margin: 0 1.5rem;
+    color: var(--grey);
+}
+
+.message-bar i.chat-input {
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-secondary);
+    border-radius: 50%;
+}
+
+
+.message-bar input {
+    flex-grow: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+
+
+
+
+
+/* #endregion */
+
+
+@media screen and (max-width: 991px) {
+    html {
+        font-size: 14px;
+    }
+}

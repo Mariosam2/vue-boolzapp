@@ -7,6 +7,7 @@ createApp({
             contacts: data,
             activeContact: 0,
             newMessageText: '',
+            searchContact: '',
         }
     },
     methods: {

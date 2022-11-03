@@ -40,7 +40,7 @@
                         </div>
                         <div class="searchbar">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" name="searchBar" id="searchBar" placeholder="Cerca o inzia una nuova chat">
+                            <input type="text" name="searchBar" id="searchBar" placeholder="Cerca o inzia una nuova chat" v-model="searchContact">
                         </div>
                         <div class="chats">
                             <div class="contact" :class="activeContact === index ? 'active' : ''"  v-for="(contact, index) in contacts" @click="setActiveContact(index)">
