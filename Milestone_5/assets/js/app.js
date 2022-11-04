@@ -44,13 +44,16 @@ createApp({
 
         },
         receiveMessage() {
+            let newFormat = {...DateTime.DATE_SHORT, weekday: 'long' };
+            console.log(newFormat);
             let now = DateTime.now();
             const newMessage = {
-                date: '10/01/2020 15:30:55',
+                date: now.toLocaleString(newFormat),
                 message: 'ok',
                 status: 'received',
                 hoursMinutes: now.toLocaleString(DateTime.TIME_SIMPLE),
             }
+            console.log(newMessage.date);
             this.contacts[this.activeContact].messages.push(newMessage);
         },
         getContacts() {
@@ -62,36 +65,36 @@ createApp({
                 }
             });
         },
-        onClick(index){
+        onClick(index) {
             // reset the clicked statuses
             let message = this.contacts[this.activeContact].messages[index];
             this.contacts[this.activeContact].messages.forEach(msg => {
-                if(msg !== message)
-                msg.clicked = false;
+                if (msg !== message)
+                    msg.clicked = false;
             });
             //console.log(message);
             // change the clicked status on the targeted message
             message.clicked = !message.clicked;
             //console.log(message);
         },
-        removeMessage(index){
+        removeMessage(index) {
             /* this.contacts[this.activeContact].messages.message[index].clicked = false; */
             let contact = this.contacts[this.activeContact];
             this.contacts[this.activeContact].messages.splice(index, 1);
             this.isEmpty(contact);
             //console.log(this.contacts[this.activeContact].messages);
         },
-        isEmpty(contact){
+        isEmpty(contact) {
             let messages = this.contacts[this.activeContact].messages;
-            if(messages.length != 0){
-                contact.empty =  false;
+            if (messages.length != 0) {
+                contact.empty = false;
             } else {
                 contact.empty = true;
             }
-            
+
             //console.log(contact.empty)
         },
-        getHoursMinutes(){
+        getHoursMinutes() {
             this.contacts.forEach(contact => {
                 contact.messages.forEach(message => {
                     let obj = DateTime.fromFormat(message.date, 'dd/MM/yyyy HH:mm:ss');
@@ -102,7 +105,7 @@ createApp({
         },
 
     },
-    mounted(){
+    mounted() {
         this.getHoursMinutes()
     }
 }).mount('#app')
