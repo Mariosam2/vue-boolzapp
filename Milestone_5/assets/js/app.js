@@ -87,7 +87,7 @@ createApp({
         },
         tryDate(){
             let obj = DateTime.fromFormat(this.contacts[0].messages[0].date, 'F');
-            console.log(obj, obj.hour, obj.minute)
+            console.log(obj, obj.toLocaleString(DateTime.TIME_SIMPLE));
         }
 
     },
