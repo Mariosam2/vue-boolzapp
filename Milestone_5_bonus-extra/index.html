@@ -73,14 +73,19 @@
                             </div>
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <i class="fa-solid fa-paperclip"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <i class="fa-solid fa-ellipsis-vertical dropdown-menu" @click="deleteMenu">
+                                <ul class="dropdown" v-if="deleteMenuClicked">
+                                    <li @click="deleteMessages" >Delete messages</li>
+                                    <li @click="deleteContact">Delete chat</li>
+                                </ul>
+                            </i>
                         </div>
                         <div class="chat-body">
                             <div ref="message" class="message" @click="onClick(i)"
                                 :class="message.status === 'sent' ? 'sent' : 'received', {clicked: false}"
                                 v-for="(message, i) in contacts[activeContact].messages">{{message.message}}<span
                                     class="text-grey xs">{{message.hoursMinutes}}</span>
-                                <div class="dropdown" :class="message.clicked ? 'show' : ''" v-if="message.clicked"
+                                <div class="dropdown" v-if="message.clicked"
                                     @click.stop="removeMessage(i)">Delete message</div>
                             </div>
                             <div class="message empty" v-show="contacts[activeContact].empty">{{emptyMsg}}</div>
