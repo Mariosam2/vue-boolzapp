@@ -1,5 +1,9 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 import data from './config.js';
+const DateTime = luxon.DateTime;
+
+/* const dt = DateTime.now();
+console.log(dt); */
 //console.log(data);
 createApp({
     data() {
@@ -76,6 +80,14 @@ createApp({
             }
             
             //console.log(contact.empty)
+        },
+        tryDate(){
+            let obj = DateTime.fromFormat(this.contacts[0].messages[0].date, 'dd MMMM yyyy');
+            console.log(obj)
         }
+
+    },
+    mounted(){
+        this.tryDate();
     }
 }).mount('#app')
