@@ -76,7 +76,7 @@
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                         <div class="chat-body">
-                            <div class="message" @click="onClick(i)"
+                            <div ref="message" class="message" @click="onClick(i)"
                                 :class="message.status === 'sent' ? 'sent' : 'received', {clicked: false}"
                                 v-for="(message, i) in contacts[activeContact].messages">{{message.message}}<span
                                     class="text-grey xs">{{message.hoursMinutes}}</span>
