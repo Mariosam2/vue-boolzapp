@@ -18,7 +18,14 @@ createApp({
             activeContact: 0,
             newMessageText: '',
             contactName: '',
-            emptyMsg: 'No messages here yet...'
+            emptyMsg: 'No messages here yet...',
+            quotes: [
+                'Se camminassimo solo nelle giornate di sole non raggiungeremmo mai la nostra destinazione',
+                'La fiducia in se stessi è il primo segreto del successo.',
+                'Ora non è tempo per pensare a ciò che non hai. Pensa a quello che puoi fare con quello che c\'è.',
+                'Ti diranno che sei finito… e proprio in quel momento tu allacciati gli scarpini, scendi in campo e zittisci tutti.',
+                'Io non riesco a immaginare che una persona possa avere successo se non dà a questo gioco che è la vita tutto quello che ha.'
+            ]
         }
     },
     methods: {
@@ -47,11 +54,12 @@ createApp({
             let now = DateTime.now();
             const newMessage = {
                 date: now.toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-                message: 'ok',
+                message: this.randomResponse(),
                 status: 'received',
                 hoursMinutes: now.toLocaleString(DateTime.TIME_SIMPLE),
             }
-            console.log(newMessage.date);
+            console.log(newMessage.message);
+            //console.log(newMessage.date);
             this.contacts[this.activeContact].messages.push(newMessage);
         },
         getContacts() {
@@ -95,16 +103,23 @@ createApp({
         getHoursMinutes() {
             this.contacts.forEach(contact => {
                 contact.messages.forEach(message => {
-                    //riformatto le date aggiungendo una virgola in modo che tutte le date (anche quelle dei nuovi messaggi (vedi removeMessage e sendMessage) seguano la stessa formattazione DATETIME_SHORT)
+                    //riformatto le date aggiungendo una virgola in modo che tutte le date (anche quelle dei nuovi messaggi, vedi removeMessage e sendMessage) seguano la stessa formattazione DATETIME_SHORT_WITH_SECONDS)
                     message.date = message.date.split(' ').join(', ')
                     let obj = DateTime.fromFormat(message.date, 'dd/MM/yyyy, HH:mm:ss');
                     //console.log(obj, obj.toLocaleString(DateTime.TIME_SIMPLE))
-                    //salvo solo l'orario del messaggio in una nuova proprietà hoursMinutes
+                    //salvo solo l'orario del messaggio in una nuova proprietà hoursMinutes (che poi mostrerò dinamicamente nell'html)
                     message.hoursMinutes = obj.toLocaleString(DateTime.TIME_SIMPLE);
-                    console.log(message);
+                    //console.log(message);
                 })
             })
         },
+        getRandomArbitrary(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        },
+        randomResponse(){
+            console.log(this.getRandomArbitrary(0, this.quotes.length));
+            return this.quotes[this.getRandomArbitrary(0, this.quotes.length)];
+        }
 
     },
     mounted() {
