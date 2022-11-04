@@ -3,7 +3,6 @@ import data from './config.js';
 const DateTime = luxon.DateTime;
 const now = DateTime.now();
 now.setLocale('it');
-now.toLocaleString(DateTime.DATETIME_FULL);
 console.log(now.toLocaleString(DateTime.DATETIME_SHORT));
 /* console.log(now.hour)
 console.log(now.minute) */
@@ -87,8 +86,8 @@ createApp({
             //console.log(contact.empty)
         },
         tryDate(){
-            let obj = DateTime.fromFormat(this.contacts[0].messages[0].date, 'dd MMMM yyyy');
-            console.log(obj)
+            let obj = DateTime.fromFormat(this.contacts[0].messages[0].date, 'F');
+            console.log(obj, obj.hour, obj.minute)
         }
 
     },
