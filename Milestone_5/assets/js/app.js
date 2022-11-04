@@ -1,7 +1,12 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 import data from './config.js';
 const DateTime = luxon.DateTime;
-
+const now = DateTime.now();
+now.setLocale('it');
+now.toLocaleString(DateTime.DATETIME_FULL);
+console.log(now.toLocaleString(DateTime.DATETIME_SHORT));
+/* console.log(now.hour)
+console.log(now.minute) */
 /* const dt = DateTime.now();
 console.log(dt); */
 //console.log(data);
