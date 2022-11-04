@@ -1,13 +1,15 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 import data from './config.js';
 const DateTime = luxon.DateTime;
-const now = DateTime.now();
+// prova luxon
+/* const now = DateTime.now();
 now.setLocale('it');
 console.log(now.toLocaleString(DateTime.DATETIME_SHORT));
-/* console.log(now.hour)
-console.log(now.minute) */
-/* const dt = DateTime.now();
+console.log(now.hour)
+console.log(now.minute)
+const dt = DateTime.now();
 console.log(dt); */
+
 //console.log(data);
 createApp({
     data() {
@@ -25,12 +27,14 @@ createApp({
         },
         sendMessage() {
             let contact = this.contacts[this.activeContact];
+            let now = DateTime.now();
             setTimeout(this.receiveMessage, 1000);
             if (this.newMessageText.length !== 0) {
                 const newMessage = {
                     date: '10/01/2020 15:30:55',
                     message: this.newMessageText,
-                    status: 'sent'
+                    status: 'sent',
+                    hoursMinutes: now.toLocaleString(DateTime.TIME_SIMPLE),
                 }
                 this.contacts[this.activeContact].messages.push(newMessage);
                 //console.log( this.contacts[this.activeContact].messages);
@@ -40,10 +44,12 @@ createApp({
 
         },
         receiveMessage() {
+            let now = DateTime.now();
             const newMessage = {
                 date: '10/01/2020 15:30:55',
                 message: 'ok',
-                status: 'received'
+                status: 'received',
+                hoursMinutes: now.toLocaleString(DateTime.TIME_SIMPLE),
             }
             this.contacts[this.activeContact].messages.push(newMessage);
         },
@@ -85,13 +91,18 @@ createApp({
             
             //console.log(contact.empty)
         },
-        tryDate(){
-            let obj = DateTime.fromFormat(this.contacts[0].messages[0].date, 'F');
-            console.log(obj, obj.toLocaleString(DateTime.TIME_SIMPLE));
-        }
+        getHoursMinutes(){
+            this.contacts.forEach(contact => {
+                contact.messages.forEach(message => {
+                    let obj = DateTime.fromFormat(message.date, 'dd/MM/yyyy HH:mm:ss');
+                    //console.log(obj, obj.toLocaleString(DateTime.TIME_SIMPLE))
+                    message.hoursMinutes = obj.toLocaleString(DateTime.TIME_SIMPLE);
+                })
+            })
+        },
 
     },
     mounted(){
-        this.tryDate();
+        this.getHoursMinutes()
     }
 }).mount('#app')

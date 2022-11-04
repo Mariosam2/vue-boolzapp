@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <span class="text-grey small"
-                                    v-if="!contact.empty">12:00</span>
+                                    v-if="!contact.empty">{{contact.messages[contact.messages.length -1].hoursMinutes}}</span>
                             </div>
 
 
@@ -79,7 +79,7 @@
                             <div class="message" @click="onClick(i)"
                                 :class="message.status === 'sent' ? 'sent' : 'received', {clicked: false}"
                                 v-for="(message, i) in contacts[activeContact].messages">{{message.message}}<span
-                                    class="text-grey xs">12:00</span>
+                                    class="text-grey xs">{{message.hoursMinutes}}</span>
                                 <div class="dropdown" :class="message.clicked ? 'show' : ''" v-if="message.clicked"
                                     @click.stop="removeMessage(i)">Delete message</div>
                             </div>
