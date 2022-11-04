@@ -28,10 +28,10 @@ createApp({
         sendMessage() {
             let contact = this.contacts[this.activeContact];
             let now = DateTime.now();
-            setTimeout(this.receiveMessage, 1000);
-            if (this.newMessageText.length !== 0) {
+            if (this.newMessageText.replace(/ /g, "").length !== 0) {
+                setTimeout(this.receiveMessage, 1000);
                 const newMessage = {
-                    date: '10/01/2020 15:30:55',
+                    date: now.toLocaleString(DateTime.DATETIME_SHORT),
                     message: this.newMessageText,
                     status: 'sent',
                     hoursMinutes: now.toLocaleString(DateTime.TIME_SIMPLE),
@@ -44,16 +44,14 @@ createApp({
 
         },
         receiveMessage() {
-            let newFormat = {...DateTime.DATE_SHORT, weekday: 'long' };
-            console.log(newFormat);
             let now = DateTime.now();
             const newMessage = {
-                date: now.toLocaleString(newFormat),
+                date: now.toLocaleString(DateTime.DATETIME_SHORT),
                 message: 'ok',
                 status: 'received',
                 hoursMinutes: now.toLocaleString(DateTime.TIME_SIMPLE),
             }
-            console.log(newMessage.date);
+            //console.log(newMessage.date);
             this.contacts[this.activeContact].messages.push(newMessage);
         },
         getContacts() {
@@ -97,9 +95,12 @@ createApp({
         getHoursMinutes() {
             this.contacts.forEach(contact => {
                 contact.messages.forEach(message => {
-                    let obj = DateTime.fromFormat(message.date, 'dd/MM/yyyy HH:mm:ss');
+                    //riformatto le date aggiungendo una virgola in modo che tutte le date (anche quelle dei nuovi messaggi seguano la stessa formattazione DATETIME_SHORT)
+                    message.date = message.date.split(' ').join(', ')
+                    let obj = DateTime.fromFormat(message.date, 'dd/MM/yyyy, HH:mm:ss');
                     //console.log(obj, obj.toLocaleString(DateTime.TIME_SIMPLE))
                     message.hoursMinutes = obj.toLocaleString(DateTime.TIME_SIMPLE);
+                    //console.log(message);
                 })
             })
         },
